@@ -343,7 +343,7 @@ class ProfanityFilter:
             self._nlps = {}
             for language in self.languages:
                 with suppress(OSError):
-                    self._nlps[language] = spacy.load(language, disable=['parser', 'ner'])
+                    self._nlps[language] = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
                     self._nlps[language].add_pipe(self.spacy_component, last=True)
             if not self._nlps:
                 raise ProfanityFilterError(f"Couldn't load Spacy model for any of languages: {self.languages_str}")
